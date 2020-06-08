@@ -1,7 +1,10 @@
 import numpy as np
 import cv2
 
+
 face_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_frontalface_alt2.xml')
+recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer.read("trainner.yml")
 
 cap = cv2.VideoCapture(0)
 
@@ -16,6 +19,9 @@ while(True):
         roi_color = frame[y:y + h, x:x + w]
 
         # recognize? deep learned model predict keras tensorflou pytotch scikit lern
+        id_, conf = recognizer.predict(roi_gray)
+        if conf >= 45 and conf <= 85:
+            print(id_)
 
         img_item = "my-image.png"
         cv2.imwrite(img_item, roi_gray)
@@ -33,5 +39,5 @@ while(True):
 
 # When everything done, release the capture
 cap.release()
-out.release()
+# out.release()
 cv2.destroyAllWindows()
