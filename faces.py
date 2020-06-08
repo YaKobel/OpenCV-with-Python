@@ -15,7 +15,7 @@ while(True):
         roi_gray = gray[y:y + h, x:x + w]  # (ycord_start, ycord_end)
         roi_color = frame[y:y + h, x:x + w]
 
-        # recognize?
+        # recognize? deep learned model predict keras tensorflou pytotch scikit lern
 
         img_item = "my-image.png"
         cv2.imwrite(img_item, roi_gray)
