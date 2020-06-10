@@ -29,8 +29,8 @@ while(True):
 
         # recognize? deep learned model predict keras tensorflou pytotch scikit lern
         id_, conf = recognizer.predict(roi_gray)
-        if conf >= 4 and conf <= 85:
-            #print(5: #id_)
+        if conf >=5: # and conf <= 85:
+            print([id_])
             # print(labels[id_])
             font = cv2.FONT_HERSHEY_SIMPLEX
             name = labels[id_]
@@ -46,15 +46,15 @@ while(True):
         end_cord_x = x + w
         end_cord_y = y + h
         cv2.rectangle(frame, (x, y), (end_cord_x, end_cord_y), color, stroke)
-        # subitems = smile_cascade.detectMultiScale(roi_gray)
-        # for (ex, ey, ew, eh) in subitems:
-        #     cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+        subitems = smile_cascade.detectMultiScale(roi_gray)
+        for (ex, ey, ew, eh) in subitems:
+            cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
     # Display the resulting frame
     cv2.imshow('frame', frame)
     if cv2.waitKey(20) & 0xFF == ord('q'):
         break
 
-# When everything done, release the capture
+# When everything done, release the captureq
 cap.release()
 cv2.destroyAllWindows()
